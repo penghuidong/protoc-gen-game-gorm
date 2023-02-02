@@ -1,4 +1,4 @@
-module github.com/penghuidong/protoc-gen-binkolo-gorm
+module github.com/penghuidong/protoc-gen-game-gorm
 
 require (
 	github.com/golang/protobuf v1.5.2
