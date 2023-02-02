@@ -501,15 +501,16 @@ func (b *ORMBuilder) parseAssociations(msg *protogen.Message, g *protogen.Genera
 					b.parseHasMany(msg, ormable, fieldName, fieldTypeShort, assocOrmable, fieldOpts)
 				}
 				fieldType = fmt.Sprintf("[]*%sORM", fieldType)
-			} else {
+			}
+			/* else {
 				if fieldOpts.GetBelongsTo() != nil {
 					b.parseBelongsTo(msg, ormable, fieldName, fieldTypeShort, assocOrmable, fieldOpts)
 				} else {
 					b.parseHasOne(msg, ormable, fieldName, fieldTypeShort, assocOrmable, fieldOpts)
 				}
-				fieldType = fmt.Sprintf("*%sORM", fieldType)
-			}
 
+			}*/
+			fieldType = fmt.Sprintf("*%sORM", fieldType)
 			// Register type used, in case it's an imported type from another package
 			// b.GetFileImports().typesToRegister = append(b.GetFileImports().typesToRegister, fieldType) // maybe we need other fields type
 			ormable.Fields[fieldName] = &Field{Type: fieldType, GormFieldOptions: fieldOpts}
