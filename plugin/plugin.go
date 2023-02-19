@@ -416,7 +416,7 @@ func (b *ORMBuilder) generateTableNameFunctions(g *protogen.GeneratedFile, messa
 	}
 	g.P(`func (m *`, typeName, `ORM) TableName() string{`)
 	g.P(`if prehook, ok := interface{}(m).(`, typeName, `WithBeforeTableName); ok {`)
-	g.P(`if before, err := prehook.BeforeTableName(m); err != nil {`)
+	g.P(`if before, err := prehook.BeforeTableName(m); err == nil {`)
 	g.P(`return before }`)
 	g.P(`}`)
 	g.P(fmt.Sprintf(`return "%s"`, tableName))
@@ -1681,7 +1681,7 @@ func (b *ORMBuilder) generateHookInterfaces(g *protogen.GeneratedFile, message *
 
 	g.P(`// `, typeName, "BeforeTableName", typeName, " called before default TableName code")
 	g.P(`type `, typeName, `With`, "BeforeTableName", ` interface {`)
-	g.P(`BeforeTableName(*`, typeName, `) (string, error)`)
+	g.P(`BeforeTableName(*`, typeName, `ORM) (string, error)`)
 	g.P(`}`)
 	g.P()
 }
