@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package gorm;
 
-option go_package = "github.com/infobloxopen/protoc-gen-gorm/options;gorm";
+option go_package = "github.com/penghuidong/protoc-gen-game-gorm/options;gorm";
 
 import "google/protobuf/descriptor.proto";
 
@@ -28,6 +28,7 @@ message GormMessageOptions {
   repeated ExtraField include = 2;
   string table = 3;
   bool multi_account = 4;
+  uint32 split_num = 5;
 }
 
 message ExtraField {
